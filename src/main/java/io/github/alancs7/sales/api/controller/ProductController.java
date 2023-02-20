@@ -2,6 +2,7 @@ package io.github.alancs7.sales.api.controller;
 
 import io.github.alancs7.sales.domain.entity.Product;
 import io.github.alancs7.sales.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class ProductController {
     private ProductService service;
 
     @PostMapping
-    public ResponseEntity<Product> save(@RequestBody Product product) {
+    public ResponseEntity<Product> save(@RequestBody @Valid Product product) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(product));
     }
 
@@ -32,7 +33,7 @@ public class ProductController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Product> update(@PathVariable("id") Long id, @RequestBody Product product) {
+    public ResponseEntity<Product> update(@PathVariable("id") Long id, @RequestBody @Valid Product product) {
         return ResponseEntity.ok(service.update(id, product));
     }
 

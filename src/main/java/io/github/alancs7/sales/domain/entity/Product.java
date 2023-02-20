@@ -1,6 +1,8 @@
 package io.github.alancs7.sales.domain.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +21,11 @@ public class Product {
     private Long id;
 
     @Column(name = "description", length = 100)
+    @NotEmpty(message = "The description field is required.")
     private String description;
 
     @Column(name = "unit_price", precision = 20, scale = 2)
+    @NotNull(message = "The price field is required.")
     private BigDecimal price;
 
 }

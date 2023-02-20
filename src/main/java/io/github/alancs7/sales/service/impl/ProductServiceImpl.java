@@ -2,6 +2,7 @@ package io.github.alancs7.sales.service.impl;
 
 import io.github.alancs7.sales.domain.entity.Product;
 import io.github.alancs7.sales.domain.repository.ProductRepository;
+import io.github.alancs7.sales.exception.BusinessException;
 import io.github.alancs7.sales.exception.ResourceNotFoundException;
 import io.github.alancs7.sales.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product save(Product product) {
-        if (product.getPrice() == null) {
-            product.setPrice(BigDecimal.ZERO);
+        if (product.getPrice().compareTo(BigDecimal.ZERO) < 0) {
+            throw new BusinessException("The value of the product cannot be less than zero.");
         }
         return productRepository.save(product);
     }

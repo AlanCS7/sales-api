@@ -5,6 +5,7 @@ import io.github.alancs7.sales.api.dto.OrderDTO;
 import io.github.alancs7.sales.api.dto.UpdateOrderStatusDTO;
 import io.github.alancs7.sales.domain.enums.OrderStatus;
 import io.github.alancs7.sales.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class OrderController {
     private OrderService service;
 
     @PostMapping
-    public ResponseEntity<Long> save(@RequestBody OrderDTO dto) {
+    public ResponseEntity<Long> save(@RequestBody @Valid OrderDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(dto).getId());
     }
 

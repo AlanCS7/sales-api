@@ -2,6 +2,7 @@ package io.github.alancs7.sales.api.controller;
 
 import io.github.alancs7.sales.domain.entity.Customer;
 import io.github.alancs7.sales.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class CustomerController {
     private CustomerService service;
 
     @PostMapping
-    public ResponseEntity<Customer> save(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> save(@RequestBody @Valid Customer customer) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(customer));
     }
 
@@ -32,7 +33,7 @@ public class CustomerController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Customer> update(@PathVariable("id") Long id, @RequestBody Customer customer) {
+    public ResponseEntity<Customer> update(@PathVariable("id") Long id, @RequestBody @Valid Customer customer) {
         return ResponseEntity.ok(service.update(id, customer));
     }
 

@@ -5,7 +5,7 @@ import io.github.alancs7.sales.domain.repository.ProductRepository;
 import io.github.alancs7.sales.exception.BusinessException;
 import io.github.alancs7.sales.exception.ResourceNotFoundException;
 import io.github.alancs7.sales.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
@@ -16,10 +16,10 @@ import java.util.List;
 import static org.springframework.data.domain.ExampleMatcher.StringMatcher.CONTAINING;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Override
     public Product save(Product product) {

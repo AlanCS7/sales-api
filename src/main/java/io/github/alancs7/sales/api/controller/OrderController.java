@@ -6,17 +6,17 @@ import io.github.alancs7.sales.api.dto.UpdateOrderStatusDTO;
 import io.github.alancs7.sales.domain.enums.OrderStatus;
 import io.github.alancs7.sales.service.OrderService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/orders")
+@RequiredArgsConstructor
 public class OrderController {
 
-    @Autowired
-    private OrderService service;
+    private final OrderService service;
 
     @PostMapping
     public ResponseEntity<Long> save(@RequestBody @Valid OrderDTO dto) {

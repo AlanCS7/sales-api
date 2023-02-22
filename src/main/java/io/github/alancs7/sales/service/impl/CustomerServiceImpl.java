@@ -4,7 +4,7 @@ import io.github.alancs7.sales.domain.entity.Customer;
 import io.github.alancs7.sales.domain.repository.CustomerRepository;
 import io.github.alancs7.sales.exception.ResourceNotFoundException;
 import io.github.alancs7.sales.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ import java.util.List;
 import static org.springframework.data.domain.ExampleMatcher.StringMatcher.CONTAINING;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public Customer save(Customer customer) {

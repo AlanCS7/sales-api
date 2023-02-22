@@ -3,7 +3,7 @@ package io.github.alancs7.sales.api.controller;
 import io.github.alancs7.sales.domain.entity.Customer;
 import io.github.alancs7.sales.service.CustomerService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customers")
+@RequiredArgsConstructor
 public class CustomerController {
 
-    @Autowired
-    private CustomerService service;
+    private final CustomerService service;
 
     @PostMapping
     public ResponseEntity<Customer> save(@RequestBody @Valid Customer customer) {
